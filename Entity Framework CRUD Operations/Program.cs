@@ -9,6 +9,9 @@ using System.Runtime.Remoting.Contexts;
 // SQL Server Management Studio - Database app
 // SQL Server Profiler - app for tracing SQL Database
 
+// CRUD - Create, Read, Update, Delete
+
+
 /*  AppConfig
  *  
  *  <?xml version="1.0" encoding="utf-8" ?>
@@ -31,6 +34,7 @@ using System.Runtime.Remoting.Contexts;
  */
 
 
+
 class Video
 {
     public int ID { get; set; }
@@ -51,22 +55,49 @@ class MainClass
 {
     static void Main()
     {
+        //// CRUD - Create, Read, Update, Delete
+        var meContext = new MeContext();
+        Video vid = meContext.Videos.FirstOrDefault();  
+
+        meContext.Videos.Remove(vid);   // --- Delete ---
+        meContext.SaveChanges();
+
+        //vid.Title = "Beggining CRUD"; // --- Update ---
+        //meContext.SaveChanges();
+
+
+        //Console.WriteLine(vid.Title);   // --- Read ----
+        //Console.WriteLine(vid.Description); // --- Read ----
+
+        //Video vid = new Video     // ---- Create ----
+        //{
+        //    Title = "Entity Framework CRUD Operations",
+        //    Description = "Learn the meaning of CRUD."
+        //};
+        //meContext.Videos.Add(vid);
+        //meContext.SaveChanges();
+
+
+
+
         //var vid = new Video
         //{
         //    Title = "Hello World Entity Framework",
         //    Description = "Learn about the entity framework"
         //};
-        var meContext = new MeContext();
-        Video meVideo = meContext.Videos.Single();
-        Console.WriteLine(meVideo.ID);
-        Console.WriteLine(meVideo.Title);
-        Console.WriteLine(meVideo.Description);
+        //var meContext = new MeContext();
+
+
+        //Video meVideo = meContext.Videos.Single();    // ----Read----
+        //Console.WriteLine(meVideo.ID);
+        //Console.WriteLine(meVideo.Title);
+        //Console.WriteLine(meVideo.Description);
 
 
 
-        //meContext.Database.Delete();
+        //meContext.Database.Delete();  // ----Delete---
 
-        //meContext.Videos.Add(vid);
+        //meContext.Videos.Add(vid);    // ----Create---
         //meContext.SaveChanges();
     }
 }
